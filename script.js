@@ -16,62 +16,52 @@ generateBtn.addEventListener("click", writePassword);
 //TODO: Generate the generatePassword function that returns the final password
 
 function generatePassword() {
-  //TODO: prompt, ask the length of a password, save it to a variable
-  var passwordLength = prompt("How many characters long should the password be?")
-  if (typeof passwordLength !== "number") {
-    alert("That's not a number! Plase try again.");
-    passwordLength = prompt("How many characters long should the password be?");
+  
+  //Takes a user input value for the desired password length
+  var passwordLength = parseInt(prompt("How many characters long should the password be?"));
+
+  //Checks for edge cases. First, checks to see if the input was a number (by way of checking if the parseInt result above returned NaN, a falsy value). Then, checks to see if the requested character length is too long. Then, checks to see if the requested character length is too short. If any of these conditions are fulfilled, the function ends and returns a null value.
+  if (!passwordLength) {
+    alert("That's not a valid number! Plase try again.");
+    return null;
   } else if (passwordLength > 128) {
     alert("A password can be at most 128 characters.");
-    passwordLength = prompt("How many characters long should the password be?");
+    return null;
   } else if (passwordLength < 8) {
     alert("A password cannot be less than 8 characters.");
-    passwordLength = prompt("How many characters long should the password be?");
+    return null;
   }
 
-  // Ask the user whether the password should have these characters
-  var hasLowercase = confirm("Should this password have lowercase letters?");
-  var hasUppercase = confirm("Should this password have uppercase letters?");
-  var hasNumbers = confirm("Should this password have numeric characters?");
-  var hasSpecial = confirm("Should this password have special letters?");
-  if (!hasLowercase && !hasUppercase && !hasNumbers && !hasSpecial) {
+  // Asks the user whether the password should have certain types of  characters,
+  var checkedOn = [null, null, null, null];
+  checkedOn[0] = confirm("Should this password have lowercase letters?");
+  checkedOn[1] = confirm("Should this password have uppercase letters?");
+  checkedOn[2] = confirm("Should this password have numeric characters?");
+  checkedOn[3] = confirm("Should this password have special letters?");
+  //Edge case: every confirm was checked no, the function ends and returns null.
+  if (checkedOn.every(val => val === false)) {
     alert("We can't generate a password without any characters! Please try again.");
-    break;
+    return null;
   }
 
-  //Arrays of the characters that can be used in generating a password
-  var lowerLetters = "abcdefghiklmnopqrstuvwxyz";
-  var upperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXTZ";
-  var nums = "0123456789";
-  var special = "";
-  var allChars = [lowerLetters, upperLetters, nums, special];
+  //Arrays of the characters that can be used in generating a password.
+  var allChars = ["abcdefghiklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXTZ", "0123456789", "~`!@#$%^&*()_-+={}|54][:'<>?/.,"];
+  var library = "";
 
-
-  var password = "";
-
-  //For the requested length of the password,
-  for (i = 0; i < passwordLength; i++) {
-    var whichLetters = Math.floor(Math.random() * 4);
-    var cont = false;
-    var arr;
-
-    while (cont === false) {
-      if (hasLowercase && whichLetters === 0) {
-        arr = allChars[0];
-        cont = true;
-      } else if (hasUppercase && whichLetters === 1) {
-        arr = allChars[0];
-        cont = true;
-      } else if (hasNumbers && whichLetters === 2) {
-        arr = allChars[0];
-        cont = true;
-      } else if (hasLowercase && whichLetters === 0) {
-        arr = allChars[0];
-        cont = true;
-      } else {
-        whichLetters = Math.floor(Math.random() * 4);
-      }
+  //Checks if a user asked for a particular library to be included, and if so, adds it to the library of allowed characters--one long string with every possible value.
+  for (i = 0; i < 4; i++) {
+    if (checkedOn[i]) {
+      console.log(allChars[i]);
+      library += allChars[i];
     }
-
   }
+  
+  //For the requested length of the password, choose a character at random from the list of allowed characters (library) and append it to the end of the password. We take advantage of the fact that strings can be considered arrays of many alphanumeric characters, in the final password generation.
+  var password = "";
+  for (i = 0; i < passwordLength; i++) {
+    var randomLetter = Math.floor(Math.random() * library.length);
+    password += library[randomLetter];
+  }
+
+  return password;
 }
