@@ -1,47 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Password Generator</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Password Generator</h1>
-      </header>
-      <div class="card">
-        <div class="card-header">
-          <a href="#upperCase" style="float: right;">Options</a>
-          <h2>Generate a Password</h2>
-          
-        </div>
-        <div class="card-body">
-          <textarea
-            readonly
-            id="password"
-            placeholder="Your Secure Password"
-            aria-label="Generated Password"
-          ></textarea>
-        </div>
-        <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Password Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Password Generator</h1>
+    </header>
+    <div class="card">
+      <div class="card-header">
+        <a href="#upperCase" style="float: right;">Options</a>
+        <h2>Generate a Password</h2>
+
+      </div>
+      <div class="card-body">
+        <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
+      </div>
+      <div class="card-footer">
+        <button id="generate" class="btn">Generate Password</button>
       </div>
     </div>
+  </div>
 
-    <br>
+  <br>
 
-    <div class="container">
-      <h2>How many characters long should the password be?</h2> 
-      <h3>~Please choose between 8 and 128 characters~</h3>
+  <div class="wrapper" id="container">
+
+    <div class="card">
+      <h3>How many characters long should the password be?</h3>
+      <h4>~Please choose between 8 and 128 characters~</h4>
       <input type="number" id="passwordLength" value=128>
     </div>
 
-
-    <div class="container">
+    <div class="card">
       <legend>Types of characters to include: </legend>
       <br>
       <input type="checkbox" name="chars" id="upperCase" checked>
@@ -56,8 +54,10 @@
       <input type="checkbox" name="chars" id="specialCharacters" checked>
       <label for="specialCharacters">Special Characters</label>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 
-  </body>
+</body>
+
 </html>
