@@ -14,7 +14,9 @@
       </header>
       <div class="card">
         <div class="card-header">
+          <a href="#upperCase" style="float: right;">Options</a>
           <h2>Generate a Password</h2>
+          
         </div>
         <div class="card-body">
           <textarea
@@ -30,19 +32,27 @@
       </div>
     </div>
 
+    <br>
+
     <div class="container">
-      <h2>How many characters long should the password be? Please choose between 8 and 128</h2>
-      <input type="number" id="passwordLength">
+      <h2>How many characters long should the password be?</h2> 
+      <h3>~Please choose between 8 and 128 characters~</h3>
+      <input type="number" id="passwordLength" value=128>
     </div>
+
 
     <div class="container">
       <legend>Types of characters to include: </legend>
+      <br>
       <input type="checkbox" name="chars" id="upperCase" checked>
       <label for="upperCase">Uppercase letters</label>
+      <br>
       <input type="checkbox" name="chars" id="lowerCase" checked>
       <label for="lowerCase">Lowercase letters</label>
+      <br>
       <input type="checkbox" name="chars" id="numerals" checked>
       <label for="numerals">Numerals</label>
+      <br>
       <input type="checkbox" name="chars" id="specialCharacters" checked>
       <label for="specialCharacters">Special Characters</label>
     </div>
